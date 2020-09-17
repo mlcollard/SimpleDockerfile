@@ -1,9 +1,9 @@
 FROM ubuntu:20.10
 
-RUN apt-get update
-RUN apt-get install make
-RUN apt-get install -y g++
-RUN apt-get install -y git
-RUN apt-get install ninja-build
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    make \
+    g++ \
+    git \
+    ninja-build \
+    && rm -rf /var/lib/apt/lists/*
 
