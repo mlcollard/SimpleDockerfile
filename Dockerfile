@@ -12,6 +12,13 @@ RUN apt-get update && apt-get install -y \
     # build
     make \
     ninja-build \
+    # utilities
+    curl \
     # remove unneeded apt updates
     && rm -rf /var/lib/apt/lists/*
 
+# Install CLI11.hpp from local version
+#ADD CLI11.hpp /usr/include/
+
+# Install CLI11.hpp from URL
+ADD https://github.com/CLIUtils/CLI11/releases/download/v1.9.1/CLI11.hpp /usr/include/
