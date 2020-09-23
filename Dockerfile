@@ -23,16 +23,15 @@ RUN apt-get update && apt-get install -y \
 # Install CLI11.hpp from URL
 ADD https://github.com/CLIUtils/CLI11/releases/download/v1.9.1/CLI11.hpp /usr/include/
 
-# Build boost from scratch
+# Build boost from source
 #RUN mkdir /boost-Build \
 #    && curl -L https://sourceforge.net/projects/boost/files/boost/1.64.0/boost_1_64_0.tar.gz | \
 #    tar xz --strip-components=1 -C /boost-Build \
 #    && cd /boost-Build \
-#    && ./bootstrap.sh --with-libraries=program_options,filesystem,thread,date_time \
-#    && ./b2 link=static cxxflags="-fPIC -static -Wl, --whole-archive" threading=multi install \
-#    && cd \
+#    && ./bootstrap.sh --with-libraries=program_options \
+#    && ./b2 link=static cxxflags="-fPIC -static -Wl,--whole-archive" threading=multi install \
 #    && rm -fR /boost-Build
 
-# Install boost include files
+# Install required boost include files
 RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
     tar xz -C /usr/local/include
