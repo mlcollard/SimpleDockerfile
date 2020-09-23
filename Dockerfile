@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
 #ADD CLI11.hpp /usr/include/
 
 # Install CLI11.hpp from URL
-ADD https://github.com/CLIUtils/CLI11/releases/download/v1.9.1/CLI11.hpp /usr/include/
+ARG CLI11_VERSION=1.9.1
+ARG CLI11_URL=https://github.com/CLIUtils/CLI11/releases/download/v${CLI11_VERSION}/CLI11.hpp
+ADD $CLI11_URL /usr/include/
 
 # Build boost from source
 #RUN mkdir /boost-Build \
@@ -33,5 +35,5 @@ ADD https://github.com/CLIUtils/CLI11/releases/download/v1.9.1/CLI11.hpp /usr/in
 #    && rm -fR /boost-Build
 
 # Install required boost include files
-RUN curl -L http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz | \
-    tar xz -C /usr/local/include
+ARG BOOST_URL=http://www.sdml.cs.kent.edu/build/srcML-1.0.0-Boost.tar.gz
+RUN curl -L $BOOST_URL | tar xz -C /usr/local/include
